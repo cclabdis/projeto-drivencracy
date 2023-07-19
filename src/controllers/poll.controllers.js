@@ -19,7 +19,6 @@ export async function createPoll(req, res) {
 }
 
 export async function getPolls(req, res) {
-    // const poll = await poll.find().toArray()
     
     try {
         const polls = await db.collection("polls").find().toArray()
