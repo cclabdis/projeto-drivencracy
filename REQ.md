@@ -70,12 +70,12 @@
     
     - [X]  Validação: caso a enquete não exista deve retornar status 404.
 - **POST** `/choice/:id/vote`
-    - [ ]  Não recebe nenhum dado do body da requisição. Deve registrar um voto na opção selecionada.
-    - [ ]  O voto deve armazenar a data e hora que foi criado no back-end.
+    - [X]  Não recebe nenhum dado do body da requisição. Deve registrar um voto na opção selecionada.
+    - [X]  O voto deve armazenar a data e hora que foi criado no back-end.
     - Validações:
-        - [ ]  Verificar se é uma opção existente, se não existir retornar 404.
-        - [ ]  Não pode ser registrado se a enquete já estiver expirado, retornar erro 403.
-    - [ ]  Retorna status 201 em caso de sucesso.
+        - [X]  Verificar se é uma opção existente, se não existir retornar 404.
+        - [X]  Não pode ser registrado se a enquete já estiver expirado, retornar erro 403.
+    - [X]  Retorna status 201 em caso de sucesso.
 - **GET** `/poll/:id/result`
     - [ ]  Retorna o resultado de uma enquete, ou seja, a opção de voto **mais votada** na enquete até o momento, seguindo o formato sugerido:
     
