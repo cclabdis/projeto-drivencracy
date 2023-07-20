@@ -1,9 +1,9 @@
 - Geral
     - [x]  A porta utilizada pelo seu servidor deve ser a 5000 (isso facilita nossa avaliação 🙂).
     - [x]  Versionamento usando Git é obrigatório. Crie um **repositório** no seu perfil do GitHub.
-    - [ ]  Faça commits a cada funcionalidade implementada.
+    - [X]  Faça commits a cada funcionalidade implementada.
     - [x]  Utilize dotenv.
-    - [ ]  O deploy da API deve ser feito no Render e do banco no MongoDB Atlas.
+    - [X]  O deploy da API deve ser feito no Render e do banco no MongoDB Atlas.
 
 
 -ENDPOINTS
