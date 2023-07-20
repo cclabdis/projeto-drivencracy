@@ -5,11 +5,7 @@ export const pollSchema = joi.object({
     expireAt: joi.date()
 })
 
-export const voteSchema =joi.object({
-    title: joi.string().required(),
-    pollId: joi.string().required()
 
-})
 
  //* - O formato de uma enquete deve ser:
     
