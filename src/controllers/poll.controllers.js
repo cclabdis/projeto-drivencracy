@@ -43,21 +43,26 @@ export async function resultPoll(req, res) {
         const poll = await db.collection("polls").findOne({ _id: new ObjectId(id) })
         if (!poll) return res.sendStatus(404)
         
-        const choice = await db.collection("choices").findOne({ pollId: id })
+        const choice = await db.collection("choices").find({ pollId: id }).toArray()
         if (!choice) return res.sendStatus(404)
-
-        const votesCount = await db.collection("votes").countDocuments({ choiceId: choice._id });
+        
+        console.log(choice)
+        
+        const choices = choice.map(item => String(item._id))
+       
+        const votesCount = await db.collection("votes").aggregate([{$match: {choiceId: { $in: choices}}},{$sortByCount: "$choiceId"}]).toArray()
+        console.log(votesCount)
 
         const resultPoll = {
-            title: choice.title,
-            votes: votesCount
-        };
+            title: choice.filter(item => item._id === votesCount[0]._id),
+            votes: votesCount[0]
+        }
          
         res.status(200).send({
             title: poll.title,
             expireAt: poll.expireAt,
             result: resultPoll
-        });
+        })
 
     } catch (err) {
         res.status(500).send(err.message);               
