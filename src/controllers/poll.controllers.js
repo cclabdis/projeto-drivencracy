@@ -19,7 +19,7 @@ export async function getPolls(req, res) {
         const polls = await db.collection("polls").find().toArray()
         res.status(201).send(polls)
     } catch (err) {
-        res.sendStatus(500)
+        res.status(500).send(err.message)
 }}
 
 export async function searchIdPoll(req, res) {    
@@ -35,34 +35,23 @@ export async function searchIdPoll(req, res) {
 
 }}
 
-
 export async function resultPoll(req, res) {    
     const { id } = req.params
     
     try {
         const poll = await db.collection("polls").findOne({ _id: new ObjectId(id) })
         if (!poll) return res.sendStatus(404)
-        
+                
         const choice = await db.collection("choices").find({ pollId: id }).toArray()
         if (!choice) return res.sendStatus(404)
         
-        console.log(choice)
-        
-        const choices = choice.map(item => String(item._id))
-       
-        const votesCount = await db.collection("votes").aggregate([{$match: {choiceId: { $in: choices}}},{$sortByCount: "$choiceId"}]).toArray()
-        console.log(votesCount)
+        const choices = choice.map(item => String(item._id))       
+        const votesCount = await db.collection("votes").aggregate([{$match: {choiceId: { $in: choices}}},{$sortByCount: "$choiceId"}]).toArray()        
+        const title = choice.filter((item => String(item._id) === votesCount[0]._id))
 
-        const resultPoll = {
-            title: choice.filter(item => item._id === votesCount[0]._id),
-            votes: votesCount[0]
-        }
+        const resultPoll = {title: title[0].title, votes: votesCount[0].count }
          
-        res.status(200).send({
-            title: poll.title,
-            expireAt: poll.expireAt,
-            result: resultPoll
-        })
+        res.status(200).send({ title: poll.title, expireAt: poll.expireAt, result: resultPoll})
 
     } catch (err) {
         res.status(500).send(err.message);               
