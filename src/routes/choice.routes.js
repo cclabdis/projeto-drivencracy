@@ -7,7 +7,6 @@ const choiceRouter = Router()
 // pollRouter.use(validateAuth)
 
 choiceRouter.post("/choice", validateSchema(voteSchema), createChoice)
-// choiceRouter.get("/poll", getPolls)
-
+// choiceRouter.post("/choice/:id/vote", getPolls)
 
 export default choiceRouter

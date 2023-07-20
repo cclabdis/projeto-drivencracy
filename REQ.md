@@ -18,9 +18,9 @@
     }
     ```
     
-- [X]  **Title** não pode ser uma string vazia, retornar status 422.
-- [X]  Se **expireAt** for vazio deve ser considerado 30 dias de enquete por padrão.
-- [X]  Deve retornar a enquete criada em caso de sucesso com status 201.
+    - [X]  **Title** não pode ser uma string vazia, retornar status 422.
+    - [X]  Se **expireAt** for vazio deve ser considerado 30 dias de enquete por padrão.
+    - [X]  Deve retornar a enquete criada em caso de sucesso com status 201.
 
 - **GET** `/poll`
     - [X]  Retorna a lista de todas as enquetes:
@@ -42,11 +42,11 @@
         ```
         
     - Validação:
-        - [ ]  Uma opção de voto não pode ser inserida sem uma enquete existente, retornar status 404.
+        - [X]  Uma opção de voto não pode ser inserida sem uma enquete existente, retornar status 404.
         - [X]  **Title** não pode ser uma string vazia, retornar status 422.
-        - [ ]  **Title** não pode ser repetido, retornar status 409.
-        - [ ]  Se a enquete já estiver expirado deve retornar erro com status 403.
-    - [ ]  Deve retornar a opção de voto criada em caso de sucesso com status 201.
+        - [X]  **Title** não pode ser repetido, retornar status 409.
+        - [X]  Se a enquete já estiver expirado deve retornar erro com status 403.
+    - [X]  Deve retornar a opção de voto criada em caso de sucesso com status 201.
 
    
 - **GET** `/poll/:id/choice`
@@ -68,7 +68,7 @@
     ]
     ```
     
-    - [ ]  Validação: caso a enquete não exista deve retornar status 404.
+    - [X]  Validação: caso a enquete não exista deve retornar status 404.
 - **POST** `/choice/:id/vote`
     - [ ]  Não recebe nenhum dado do body da requisição. Deve registrar um voto na opção selecionada.
     - [ ]  O voto deve armazenar a data e hora que foi criado no back-end.

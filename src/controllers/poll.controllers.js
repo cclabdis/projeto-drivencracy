@@ -18,9 +18,21 @@ export async function getPolls(req, res) {
     try {
         const polls = await db.collection("polls").find().toArray()
         res.status(201).send(polls)
-    } catch (error) {
-        console.error(error)
-        res.status(500).send(err.message)
-    }
+    } catch (err) {
+        console.error(err)
+        res.sendStatus(500)
+}}
 
-}
+export async function searchIdPoll(req, res) {    
+    const id = req.params.id;
+    
+    try {
+        const choices = await db.collection("poll").find( {pollId: id} ).toArray()
+        if(choices.length === 0) return res.sendStatus(404)
+      
+        res.status(201).send(choices)
+    } catch (err) {
+        console.error(err)
+        res.sendStatus(500)
+
+}}
