@@ -50,7 +50,7 @@
 
    
 - **GET** `/poll/:id/choice`
-    - [ ]  Retorna a lista de opções de voto de uma enquete:
+    - [X]  Retorna a lista de opções de voto de uma enquete:
     
     ```jsx
     [
@@ -77,7 +77,7 @@
         - [X]  Não pode ser registrado se a enquete já estiver expirado, retornar erro 403.
     - [X]  Retorna status 201 em caso de sucesso.
 - **GET** `/poll/:id/result`
-    - [ ]  Retorna o resultado de uma enquete, ou seja, a opção de voto **mais votada** na enquete até o momento, seguindo o formato sugerido:
+    - [X]  Retorna o resultado de uma enquete, ou seja, a opção de voto **mais votada** na enquete até o momento, seguindo o formato sugerido:
     
     ```jsx
     {
@@ -91,4 +91,4 @@
     }
     ```
     
-    - [ ]  Validação: caso a enquete não exista deve retornar status 404.
+    - [X]  Validação: caso a enquete não exista deve retornar status 404.
