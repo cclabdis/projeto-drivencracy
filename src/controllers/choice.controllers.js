@@ -30,20 +30,20 @@ export async function voteChoice (req, res) {
   const { id } = req.params
   const vote = { createdAt: dayjs().format('YYYY-MM-DD HH:mm'), choiceId: id } 
 
-      try {
-      const choice = await db.collection('choices').findOne({ _id: new ObjectId(id)} ) 
-      if(!choice) return res.sendStatus(404)
+  try {
+    const choice = await db.collection('choices').findOne({ _id: new ObjectId(id)} ) 
+    if(!choice) return res.sendStatus(404)
 
-      const searchPoll = await db.collection('polls').findOne({ _id: new ObjectId(choice.pollId) });
+    const searchPoll = await db.collection('polls').findOne({ _id: new ObjectId(choice.pollId) })
 
-      const expiredDate = searchPoll.expiredAt
+    const expiredDate = searchPoll.expiredAt
 
-      const expired = dayjs().isAfter(expiredDate, 'days')
-      if(expired) return res.sendStatus(403)      
+    const expired = dayjs().isBefore(expiredDate)
+    if(expired) return res.sendStatus(403)      
 
-      await db.collection('votes').insertOne(vote)
-      res.sendStatus(201)
-    } catch(err) {
-        res.status(500).send(err.message)
-    }
+    await db.collection('votes').insertOne(vote)
+    res.sendStatus(201)
+  } catch(err) {
+      res.status(500).send(err.message)
+  }
   }
